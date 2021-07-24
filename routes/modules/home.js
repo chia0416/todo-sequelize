@@ -8,7 +8,7 @@ const User = db.User
 router.get('/', (req, res) => {
   User.findByPk(req.user.id)
     .then((user) => {
-      if(!user) throw new Error('user not found')
+      if (!user) throw new Error('user not found')
       return Todo.findAll({
         raw: true,
         nest: true,
