@@ -17,11 +17,11 @@ module.exports = app => {
     User.findOne({ where: { email } })
       .then(user => {
         if (!user) {
-          return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
+          return done(null, false, req.flash('warning_msg', '此信箱還尚未註冊'))
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
+            return done(null, false, req.flash('warning_msg', '信箱或密碼不正確'))
           }
           return done(null, user)
         })
